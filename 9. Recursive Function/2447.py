@@ -1,24 +1,29 @@
 N = int(input())
-a = N
-t = 0
+arr = [['*']*N for _ in range(N)]
+x = 0
+y = 0
 
-while a != 1:
-    a = a//3
-    t = t+1
-t = t-1
+def star(N,x,y):
+    a = x + (N//3)
+    b = y + (N//3)
+
+    for i in range(N//3):
+        for j in range(N//3):
+            arr[b+i][a+j] = " "
+    
+    if N > 3:
+        for i in range(3):
+            for j in range(3):
+                star(N//3, x+(N//3)*j, y+(N//3)*i)
+    else:
+        return
+    
+
+star(N,x,y)
+
+for i in range(N):
+    ans = "".join(arr[i])
+    print(ans)
 
 
-cp = [['*']*N for _ in range(N)]
-def star(N,t):
-    if t < 0:
-        print(cp)
-        return 
-    b = (N-1)//2
-    c = ((3**t)-1)//2
-    print(t,b,c)
-    cp[b-c:b+c+1][b-c:b+c+1] = ' '
-    star(N,t-1)
-
-
-star(N,t)
  
